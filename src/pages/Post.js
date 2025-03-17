@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams, Link } from "react-router-dom";
+import AddComment from "../components/Comment";
+import EditComment from "../components/EditComment";
 
 function Post(){
     const { id } = useParams();
     const navigate = useNavigate();
     const [post, setPost] = useState(null);
     const [comments, setComments] = useState([]);
+    const [editingCommentId, setEditingCommentId] = useState(null);
 
     const handleError = (error,source) => {
         console.error(`Error in ${source}: `, error);
@@ -37,7 +40,6 @@ function Post(){
         fetchPost();
         fetchComment();
     },[id])
-
     if (!post) return <p>Loading...</p>
     return(
         <div>
@@ -48,15 +50,26 @@ function Post(){
                 {comments.map((comment) => (
                     <li key={comment.id}>
                         <strong>{comment.name}</strong>: {comment.body}
-                        {comment.userId === 1 && <>
-                        <button>Edit</button>
+                        {comment.name === 'User' && <>
+                        <button onClick={() => setEditingCommentId(comment.id)}>Edit</button>
                         <button>Delete</button>
                         </>}
+                    {editingCommentId === comment.id && (
+                        <EditComment
+                        comment={comment}
+                        setComments={setComments}
+                        setEditingCommentId={setEditingCommentId}
+                        />
+                    )}
                     </li>
                 ))}
             </ul>
-            <button onClick={() => navigate(-1)}>Back</button>
             <p>By <Link to={`/user/${post.userId}`}> User {post.userId}</Link></p>
+
+            <AddComment setComments={setComments}/>
+
+            <button onClick={() => navigate(-1)}>Back</button>
+
         </div>
     )
 
