@@ -1,34 +1,19 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import AddPost from '../components/AddPost.js';
+import PostList from "../components/PostList.js";
 
-function Home() {
-    const [posts, setPosts] = useState([]);
-    
-    useEffect(()=>{
-        const fetchPost = async() => {
-            try{
-                const response = await fetch('https://jsonplaceholder.typicode.com/posts?userId=1');
-                const data = await response.json();
-                setPosts(data);
-            }catch(error){
-                console.error('Error fetching data: ', error)
-            }
-        };
-        fetchPost();
-    },[]);
+function Home({posts, setPosts}) {
 
-    return (
+    const addPost = (newPost) => {
+        setPosts([...posts, newPost]);
+    };
+
+    return(
         <div>
-            <h1>All Blog Post</h1>
-            <ul>
-                {posts.map((post) => (
-                    <li key={post.id}>
-                        <h2>{post.title}</h2>
-                        <p>{post.body.slice(0,50)}...</p>
-                        <Link to={`/post/${post.id}`}>Read More</Link>
-                    </li>
-                ))}
-            </ul>
+            <h1>Blog Home</h1>
+            <AddPost addPost = {addPost} />
+            <PostList posts = {posts} />
         </div>
     )
 }
