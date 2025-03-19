@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import React, { useEffect, useState } from "react";
+import AddComment from "./Comment";
 
 // Component that updates every minute
 function ConvertTime({ time, currentTime }) {
@@ -39,6 +40,7 @@ function PostList({ posts }) {
                             <p><ConvertTime time={post.id} currentTime={currentTime} /></p>
                         </Link>
                         <p>{post.content}</p>
+                        <AddComment pId={post.id}/>
                     </li>
                 ))}
             </ul>

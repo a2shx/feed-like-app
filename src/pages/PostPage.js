@@ -1,6 +1,7 @@
 import { useNavigate, useParams } from "react-router-dom";
 import EditPost from "../components/EditPost";
 import { useState } from "react";
+import AddComment from "../components/Comment";
 
 
 function PostPage({posts, setPosts}){
@@ -27,6 +28,7 @@ function PostPage({posts, setPosts}){
             <p>{post.time}</p>
             <p>{post.content}</p>
             
+            <AddComment pId={post.id}/>
 
             {isEdit && (<EditPost setIsEdit={setIsEdit} post={post} setPosts={setPosts}/>)}
 
