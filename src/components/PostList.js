@@ -1,23 +1,7 @@
 import { Link } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 import AddComment from "./Comment";
-
-// Component that updates every minute
-function ConvertTime({ time, currentTime }) {
-    const now = new Date(currentTime);
-    const past = new Date(time);
-    const diffInSeconds = Math.floor((now - past) / 1000);
-
-    if (diffInSeconds < 60) return "Just now";
-    const diffInMinutes = Math.floor(diffInSeconds / 60);
-    if (diffInMinutes < 60) return `${diffInMinutes} min ago`;
-    const diffInHours = Math.floor(diffInMinutes / 60);
-    if (diffInHours < 24) return `${diffInHours} hour${diffInHours > 1 ? "s" : ""} ago`;
-    const diffInDays = Math.floor(diffInHours / 24);
-    if (diffInDays < 7) return `${diffInDays} day${diffInDays > 1 ? "s" : ""} ago`;
-
-    return past.toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }); // Show full date if older
-}
+import ConvertTime from "./TimeAgo";
 
 function PostList({ posts, comments, setComments }) {
     const [currentTime, setCurrentTime] = useState(Date.now());
@@ -35,8 +19,9 @@ function PostList({ posts, comments, setComments }) {
                 {[...posts].reverse().map((post) => (
                     <li key={post.id}>
                         <h4>{post.username}</h4>
+                        {post.lastEdit === null ? <p>{post.time}</p> : <p>Last edit: {post.lastEdit}</p>}
                         <Link to={`/post/${post.id}`}>
-                            <p><ConvertTime time={post.id} currentTime={currentTime} /></p>
+                            <p><ConvertTime time={post.id}/></p>  
                         </Link>
                         <p>{post.content}</p>
                         <AddComment comments={comments} setComments={setComments} pId={post.id}/>

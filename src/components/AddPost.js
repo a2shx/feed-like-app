@@ -1,21 +1,8 @@
 import { useEffect, useState } from "react";
+import formattedDate from "./FormattedDate";
 
 function AddPost({addPost}) {
     const [content, setContent] = useState('');
-
-    const formattedDate = (now) => {
-        const unixTimestamp = now;
-        const date = new Date(now);
-        return date.toLocaleString('en-US', {
-            weekday: 'long',
-            year: 'numeric', 
-            month: 'long', 
-            day: 'numeric', 
-            hour: '2-digit', 
-            minute: '2-digit', 
-            hour12: true,
-          });
-    }
 
 
     const handleSubmit = (e) => {
@@ -24,7 +11,8 @@ function AddPost({addPost}) {
         const newPost = {
             id: now,
             username:'me',
-            time:formattedDate(now),
+            time:formattedDate(Date.now()),
+            lastEdit:null,
             content:content,
         }
         addPost(newPost);

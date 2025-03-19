@@ -1,4 +1,5 @@
 import { useState } from "react";
+import formattedDate from "./FormattedDate";
 
 function EditPost({post,setPosts,setIsEdit}) {
     const [content, setContent] = useState(post.content);
@@ -6,7 +7,7 @@ function EditPost({post,setPosts,setIsEdit}) {
     const handleSubmit = (e) => {
         e.preventDefault();
         setPosts((prevPosts) => 
-        prevPosts.map((p) => p.id === post.id ? {...p, content}: p))
+        prevPosts.map((p) => p.id === post.id ? {...p, content, lastEdit:formattedDate(Date.now())}: p))
         setIsEdit(false);
     }
 

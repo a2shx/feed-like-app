@@ -1,6 +1,8 @@
 import { useState } from "react";
+import ConvertTime from "./TimeAgo";
+import formattedDate from "./FormattedDate";
 
-function AddComment({comments, setComments, pId}) {
+function AddComment({comments, setComments,pId}) {
     const [newComment, setNewComment] = useState('');
     const [editingCommentId, setEditingCommentId] = useState(null);
     const [editedComment, setEditedComment] = useState('');
@@ -10,7 +12,12 @@ const handleSubmit = (e) => {
     e.preventDefault();
     if(!newComment.trim()) return;
     const commentId = Date.now();
-    setComments((prev) => [...prev, { id: commentId, postId: pId, text: newComment }])
+    setComments((prev) => [...prev, { 
+        id: commentId, 
+        postId: pId, 
+        text: newComment,
+        time: formattedDate(Date.now()), 
+        lastEdit: null}])
     setNewComment('');
 }
 
@@ -21,7 +28,7 @@ const handleEditComment = (id, comment) => {
 
 const handleSaveEdit = (id) => {
     if(!editedComment.trim()) return;
-    setComments((prev) => prev.map((c) => (c.id===id? {...c, text: editedComment} : c)))
+    setComments((prev) => prev.map((c) => (c.id===id? {...c, text: editedComment, lastEdit: formattedDate(Date.now())} : c)))
     setEditingCommentId(null);
 }
 
@@ -51,6 +58,8 @@ const handleDeleteComment = (id) => {
                             (   
                                 <>
                                     <span>{c.text}</span>
+                                    {c.lastEdit === null ? <p>{c.time}</p> :<p>Last Edit: {c.lastEdit}</p>}
+                                    <ConvertTime time={c.id}/>
                                     <button onClick={() => handleEditComment(c.id, c.text)}>Edit</button>
                                     <button onClick={() => setConfirmDeleteId(c.id)}>Delete</button>
                                     {confirmDeleteId === c.id && (

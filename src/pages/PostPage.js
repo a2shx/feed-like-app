@@ -1,7 +1,8 @@
 import { useNavigate, useParams } from "react-router-dom";
 import EditPost from "../components/EditPost";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import AddComment from "../components/Comment";
+import ConvertTime from "../components/TimeAgo";
 
 
 function PostPage({comments, setComments, posts, setPosts}){
@@ -25,6 +26,8 @@ function PostPage({comments, setComments, posts, setPosts}){
             <button onClick={() => {setShowModal(true)}}>Delete Post</button>
             <button onClick={() => {setIsEdit(true)}}>Edit Post</button>
             <h1>{post.username}</h1>
+            {post.lastEdit === null ? <p>{post.time}</p> : <p>Last edit: {post.lastEdit}</p>}
+            <ConvertTime time={post.id}/>
             <p>{post.time}</p>
             <p>{post.content}</p>
         
