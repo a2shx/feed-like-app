@@ -19,9 +19,8 @@ function ConvertTime({ time, currentTime }) {
     return past.toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }); // Show full date if older
 }
 
-function PostList({ posts }) {
+function PostList({ posts, comments, setComments }) {
     const [currentTime, setCurrentTime] = useState(Date.now());
-
     useEffect(() => {
         const interval = setInterval(() => {
             setCurrentTime(Date.now());
@@ -40,7 +39,7 @@ function PostList({ posts }) {
                             <p><ConvertTime time={post.id} currentTime={currentTime} /></p>
                         </Link>
                         <p>{post.content}</p>
-                        <AddComment pId={post.id}/>
+                        <AddComment comments={comments} setComments={setComments} pId={post.id}/>
                     </li>
                 ))}
             </ul>

@@ -4,7 +4,7 @@ import { useState } from "react";
 import AddComment from "../components/Comment";
 
 
-function PostPage({posts, setPosts}){
+function PostPage({comments, setComments, posts, setPosts}){
     const [showModal, setShowModal] = useState(false);
     const [isEdit, setIsEdit] = useState(false);
     const { id } = useParams();
@@ -27,8 +27,8 @@ function PostPage({posts, setPosts}){
             <h1>{post.username}</h1>
             <p>{post.time}</p>
             <p>{post.content}</p>
-            
-            <AddComment pId={post.id}/>
+        
+            <AddComment comments={comments} setComments={setComments} pId={post.id}/>
 
             {isEdit && (<EditPost setIsEdit={setIsEdit} post={post} setPosts={setPosts}/>)}
 

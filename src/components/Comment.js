@@ -1,7 +1,6 @@
 import { useState } from "react";
 
-function AddComment({pId}) {
-    const [comments, setComments] = useState([]);
+function AddComment({comments, setComments, pId}) {
     const [newComment, setNewComment] = useState('');
     const [editingCommentId, setEditingCommentId] = useState(null);
     const [editedComment, setEditedComment] = useState('');

@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import AddPost from '../components/AddPost.js';
 import PostList from "../components/PostList.js";
 
-function Home({posts, setPosts}) {
+function Home({comments, setComments, posts, setPosts}) {
 
     const addPost = (newPost) => {
         setPosts([...posts, newPost]);
@@ -13,7 +13,7 @@ function Home({posts, setPosts}) {
         <div>
             <h1>Blog Home</h1>
             <AddPost addPost = {addPost} />
-            <PostList posts = {posts} />
+            <PostList comments={comments} setComments={setComments} posts = {posts} />
         </div>
     )
 }
