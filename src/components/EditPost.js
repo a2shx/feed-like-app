@@ -22,9 +22,9 @@ function EditPost({post,setPosts,setIsEdit}) {
                         value={content}
                         onChange={(e) => setContent(e.target.value)}
                     />
-                    <div>
-                    <button className="confirm-button" type="submit">Save Changes</button>
-                    <button className="confirm-button ml-1" onClick={() => setIsEdit(false)}>Cancel</button>
+                    <div className="text-center">
+                    <button className="confirm-button  mb-1" type="submit">Save</button>
+                    <button className="confirm-button  ml-1" onClick={() => setIsEdit(false)}>Cancel</button>
                     </div>
                 </form>
             </div>

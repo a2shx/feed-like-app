@@ -54,10 +54,10 @@ function PostPage({comments, setComments, posts, setPosts}){
                 {showModal && (
                     <div>
                         <div className="pop-up">
-                            <h2 className="mb-3">Are you sure to Delete?</h2>
+                            <h2 className="mb-3 text-center">Are you sure to Delete?</h2>
                             <div>
-                                <button className="confirm-delete" onClick={handleDeletePost}>Yes</button>
-                                <button className="confirm-delete ml-2" onClick={() => {setShowModal(false)}}>No</button>
+                                <button className="confirm-button" onClick={handleDeletePost}>Yes</button>
+                                <button className="confirm-button ml-2" onClick={() => {setShowModal(false)}}>No</button>
                             </div>
                         </div> 
                         <div className="bg-screen" onClick={() => setShowModal(false)}></div>

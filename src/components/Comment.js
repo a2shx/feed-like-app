@@ -54,14 +54,14 @@ const handleDeleteComment = (id) => {
                             {editingCommentId === c.id ? (
                                 <>
                                     <div className="flex justify-between pt-3">
-                                        <input className="border px-3 w-10/12"
+                                        <input className="rounded-xl border px-3 w-9/12"
                                             type="text"
                                             value={editedComment}
                                             onChange={(e) => setEditedComment(e.target.value)}
                                         />
                                         <div className="">
-                                            <button className="icon-style" onClick={() => handleSaveEdit(c.id)}><FontAwesomeIcon icon={faCircleCheck}/></button>
-                                            <button className="icon-style ml-2" onClick={() => setEditingCommentId(null)}><FontAwesomeIcon icon={faCircleXmark}/></button>
+                                            <button className="text-2xl hover:opacity-70 xs:text-xl ml-1" onClick={() => handleSaveEdit(c.id)}><FontAwesomeIcon icon={faCircleCheck}/></button>
+                                            <button className="text-2xl hover:opacity-70 xs:text-xl ml-1" onClick={() => setEditingCommentId(null)}><FontAwesomeIcon icon={faCircleXmark}/></button>
                                         </div>
                                     </div>
                                 </>
@@ -92,7 +92,7 @@ const handleDeleteComment = (id) => {
                                     {confirmDeleteId === c.id && (
                                         <div>
                                             <div className="pop-up">
-                                                <h2 className="mx-auto">Are you sure to Delete?</h2>
+                                                <h2 className="text-center mb-2">Are you sure to Delete?</h2>
                                                 <div>
                                                     <button className="confirm-button" onClick={() => handleDeleteComment(c.id)}>Yes</button>
                                                     <button className="confirm-button ml-1" onClick={() => setConfirmDeleteId(null)}>No</button>
@@ -116,7 +116,7 @@ const handleDeleteComment = (id) => {
                         value={newComment}
                         onChange={(e) => setNewComment(e.target.value)}
                     />
-                    <button className="icon-style pl-3" type="submit"><FontAwesomeIcon icon={faCircleChevronUp}/></button>
+                    <button className="text-2xl hover:opacity-70 xs:text-xl ml-3" type="submit"><FontAwesomeIcon icon={faCircleChevronUp}/></button>
                 </form>
             </div>
             
