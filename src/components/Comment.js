@@ -70,7 +70,7 @@ const handleDeleteComment = (id) => {
                                 <>  
                                     <div className="flex items-center pt-5">
                                         <div className="flex items-center">
-                                            <img className="display-image" src="/Displaypic/Display.png"/>
+                                            <img className="display-image" src="/Display.png"/>
                                             <div className="text-area">
                                                 <span className="font-bold">{c.username}</span>
                                                 <span className="block">{c.text}</span>
