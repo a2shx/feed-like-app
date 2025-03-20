@@ -110,7 +110,7 @@ const handleDeleteComment = (id) => {
             </div>
             <div className="container max-w-screen-sm mt-5">
                 <form  className="flex" onSubmit={handleSubmit}>
-                    <img className="w-8 rounded-full mr-3" src="/Displaypic/Display.png"/>
+                    <img className="w-8 rounded-full mr-3" src="/Display.png"/>
                     <input className="w-11/12 px-3 border rounded-xl"
                         type="text"
                         value={newComment}
