@@ -20,7 +20,7 @@ function PostList({ posts, comments, setComments }) {
                     <li className="post-container" key={post.id}>
                         <div className="border-b pb-3">
                         <div className="flex items-center">
-                            <img className="w-10 rounded-full mr-3" src="../Displaypic/Display.png"/>
+                            <img className="w-10 rounded-full mr-3" src="/Display.png"/>
                             <div>
                             <h4 className="font-bold">{post.username}</h4>
                             <div  className="relative group inline-block">
