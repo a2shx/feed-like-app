@@ -28,7 +28,7 @@ function PostPage({comments, setComments, posts, setPosts}){
             <div className="postpoage-card">
                 <div className="flex justify-between border-b pb-3 mb-5">
                     <div className="flex items-center">
-                        <img className="w-10 rounded-full mr-3" src="../Displaypic/Display.png"/>
+                        <img className="w-10 rounded-full mr-3" src="/Displaypic/Display.png"/>
                         <div>
                             <h1 className="font-bold">{post.username}</h1>
                             <div className="relative group inline-block">
